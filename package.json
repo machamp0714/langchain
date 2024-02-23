@@ -1,0 +1,11 @@
+{
+  "name": "langchain",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "langchain": "^0.1.21"
+  }
+}
