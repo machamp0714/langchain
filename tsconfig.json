@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "isolatedModules": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "importsNotUsedAsValues": "error",
+    "ignoreDeprecations": "5.0"
+  },
+  "include": [
+    "src/**/*.ts",
+  ],
+}
