@@ -22,8 +22,8 @@ const examplePrompt = ChatPromptTemplate.fromTemplate(
 
 const fewShotPrompt = new FewShotChatMessagePromptTemplate({
   prefix:
-    "Rephrase the users query to be more general, using the following examples",
-  suffix: "Human: {input}",
+    "Rephrase the users query to be more general, using the following examples", // 例を出力するプロンプトの前に置かれるテキスト
+  suffix: "Human: {input}", // 例を出力するプロンプトの後に置かれるテキスト
   examplePrompt,
   examples,
   inputVariables: ["input"],
