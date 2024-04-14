@@ -3,10 +3,6 @@ import { CheerioWebBaseLoader } from "langchain/document_loaders/web/cheerio";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { OpenAIEmbeddings, ChatOpenAI } from "@langchain/openai";
-import { pull } from "langchain/hub";
-import type { ChatPromptTemplate } from "@langchain/core/prompts";
-import { StringOutputParser } from "@langchain/core/output_parsers";
-import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { RetrievalQAChain } from "langchain/chains";
 
 (async () => {
@@ -26,19 +22,20 @@ import { RetrievalQAChain } from "langchain/chains";
     new OpenAIEmbeddings()
   );
 
-  const retriever = vectorStore.asRetriever();
-  const prompt = await pull<ChatPromptTemplate>("rlm/rag-prompt");
+  const retriever = vectorStore.asRetriever(); // vector store から retriever を作成
   const llm = new ChatOpenAI({ modelName: "gpt-3.5-turbo", temperature: 0 });
 
-  const ragChain = await RetrievalQAChain.fromLLM(llm, retriever, {
+  const chain = await RetrievalQAChain.fromLLM(llm, retriever, {
     returnSourceDocuments: true,
   });
 
   const retrievedDocs = await retriever.getRelevantDocuments(
     "what is task decomposition"
   );
+  console.log(retrievedDocs);
 
-  const result = await ragChain.call({
+  // RetrievalQAを実行する
+  const result = await chain.invoke({
     query: "what is task decomposition?",
   });
 
